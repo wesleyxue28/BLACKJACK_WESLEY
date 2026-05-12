@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
     public Card card1;
     public Card [] deck;
@@ -23,7 +25,8 @@ public class Main {
         }
         shuffle();
         printDeck();
-
+        Scanner sc = new Scanner (System.in);
+        String input = sc.nextLine();
     }
 
   public void printDeck(){

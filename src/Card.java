@@ -29,7 +29,6 @@ public class Card {
         else {
             System.out.println(value+1 + " of " + suit);
         }
-
    }
 
 }

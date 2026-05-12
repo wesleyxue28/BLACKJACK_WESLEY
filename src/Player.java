@@ -5,11 +5,13 @@ public class Player {
     public Card [] hand;
     public int numCards;
     public boolean isBust;
+    public int sumCards = 0;
 
     public int cardValue;
 
     public static void main(String[] args) {
-        Player player = new Player();
+        Player player = new Player(1);
+
     }
 
 
@@ -18,6 +20,9 @@ public class Player {
         hand = new Card [11];
         numCards = 0;
         isBust = false;
+        printPlayer();
+        addCard(new Card(5,"Jack",true));
+        getHandTotal();
     }
 
     public void printPlayer(){
@@ -32,18 +37,24 @@ public class Player {
     }
 
     public void getHandTotal(){
-        int total = 0;
+        int sumCards = 0;
         for (int i = 0; i < numCards; i++){
             if (hand[i].value == 0) {
-                total += 11;
+                sumCards += 11;
             } else if (hand[i].value >= 10) {
-                total += 10;
+                sumCards += 10;
             } else {
-                total += hand[i].value + 1;
+                sumCards += hand[i].value + 1;
             }
             hand[i].printCard();
         }
     }
 
+    public void bustCard(){
+        if (sumCards < 21){
+            isBust = false;
+            System.out.println("");
+        }
+    }
 
     }
