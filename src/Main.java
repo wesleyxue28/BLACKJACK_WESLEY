@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public Card card1;
     public Card [] deck;
+    public int numCards;
     public static void main(String[] args) {
         Main myapp = new Main();
-
     }
     public Main() {
         deck = new Card [52];
@@ -25,8 +25,22 @@ public class Main {
         }
         shuffle();
         printDeck();
-        Scanner sc = new Scanner (System.in);
-        String input = sc.nextLine();
+        Player player1 = new Player(1);
+
+        player1.addCard(deck[numCards]);
+        numCards++;
+        player1.addCard(deck[numCards]);
+        numCards++;
+        player1.getHandTotal();
+        player1.printPlayer();
+        //dealer
+
+        while (true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Player 1 what do you want to do: ");
+            String input = sc.nextLine();
+
+        }
     }
 
   public void printDeck(){

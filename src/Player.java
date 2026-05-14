@@ -21,8 +21,9 @@ public class Player {
         numCards = 0;
         isBust = false;
         printPlayer();
-        addCard(new Card(5,"Jack",true));
+//        addCard(new Card(6,"Spade",true));
         getHandTotal();
+        bustCard();
     }
 
     public void printPlayer(){
@@ -47,13 +48,23 @@ public class Player {
                 sumCards += hand[i].value + 1;
             }
             hand[i].printCard();
+            System.out.println(sumCards);
         }
     }
 
     public void bustCard(){
         if (sumCards < 21){
             isBust = false;
-            System.out.println("");
+            System.out.println(sumCards);
+        }
+        else if (sumCards > 21){
+            isBust = true;
+            System.out.println(sumCards);
+        }
+        else{
+            isBust = false;
+            System.out.println("Black ");
+            System.out.println(sumCards);
         }
     }
 
