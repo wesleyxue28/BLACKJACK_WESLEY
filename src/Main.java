@@ -7,7 +7,7 @@ public class Main {
     Player player1;
     Player dealer;
     public static void main(String[] args) {
-        Main myapp = new Main();
+        Main myapp = new  Main();
     }
     public Main() {
         deck = new Card [52];
@@ -105,7 +105,26 @@ public class Main {
         System.out.println("Dealer stands at "+ dealer.sumCards);
         }
 
+    public void compareHands(){
+        System.out.println("Player: "+ player1.sumCards);
+        System.out.println("Dealer: "+ dealer.sumCards);
 
+        if (player1.isBust){
+            System.out.println("Player bust! Dealer wins!");
+        }
+        else if (dealer.isBust){
+            System.out.println("Dealer bust! Player wins!");
+        }
+        else if (player1.sumCards < dealer.sumCards){
+            System.out.println("Dealer wins!");
+        }
+        else if (dealer.sumCards < player1.sumCards){
+            System.out.println("Player wins!");
+        }
+        else{
+            System.out.println("Tie! ");
+        }
+    }
 
 
 
