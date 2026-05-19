@@ -4,6 +4,8 @@ public class Main {
     public Card card1;
     public Card [] deck;
     public int numCards;
+    Player player1;
+    Player dealer;
     public static void main(String[] args) {
         Main myapp = new Main();
     }
@@ -25,7 +27,7 @@ public class Main {
         }
         shuffle();
         printDeck();
-        Player player1 = new Player(1);
+        player1 = new Player(1);
 
         player1.addCard(deck[numCards]);
         numCards++;
@@ -36,7 +38,9 @@ public class Main {
         player1.printPlayer();
         //dealer
 
-       player1.takeTurn();
+       takeTurn();
+       dealerTurn();
+       compareHands();
     }
 
   public void printDeck(){
@@ -54,5 +58,61 @@ public class Main {
             deck[i] = holdCard;
             }
         }
-  }
+    public void takeTurn() {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("Player " + 1 + ", type 'hit' or 'stand': ");
+            String input = sc.nextLine();
+
+            if (input.equals("hit")) {
+                player1.addCard(deck[numCards]);
+                numCards++;
+                player1.getHandTotal();
+                player1.printPlayer();
+                player1.bustCard();
+                if (player1.isBust) {
+                    System.out.println("Player " + 1 + "busts!");
+                    break;
+                }
+            } else if (input.equals("stand")) {
+                System.out.println("Player " + 1 + " stands with " + player1.sumCards);
+                break;
+            } else {
+                System.out.println("Try again. Please type 'hit' or 'stand'.");
+            }
+        }
+    }
+
+    public void dealerTurn(){
+        Player dealer = new Player(2);
+        dealer.addCard(deck[numCards++]);
+        dealer.addCard(deck[numCards++]);
+        dealer.getHandTotal();
+        System.out.println("Dealer's hand: ");
+        dealer.printPlayer();
+
+        while (dealer.sumCards < 17){
+            System.out.println("Dealer hits: ");
+            dealer.addCard(deck[numCards++]);
+            dealer.getHandTotal();
+            dealer.printPlayer();
+            dealer.bustCard();
+            if (dealer.isBust){
+                System.out.println("Dealer busts! Player wins!");
+                return;
+            }
+        }
+        System.out.println("Dealer stands at "+ dealer.sumCards);
+        }
+
+
+
+
+
+
+    }
+
+
+
+
 

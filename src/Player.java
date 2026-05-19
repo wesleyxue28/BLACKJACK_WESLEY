@@ -60,7 +60,7 @@ public class Player {
         }
         else if (sumCards > 21){
             isBust = true;
-            System.out.println(sumCards + "you lose");
+            System.out.println(sumCards + " you lose");
         }
         else{
             isBust = false;
@@ -69,30 +69,10 @@ public class Player {
         }
     }
 
-    public void takeTurn() {
-        Scanner sc = new Scanner(System.in);
-        while (true){
-            System.out.println("Player "+ numPlayer + ", type 'hit' or 'stand': ");
-            String input = sc.nextLine();
 
-            if (input.equals("hit")){
-                addCard();
-                numCards++;
-                getHandTotal();
-                printPlayer();
-                bustCard();
-                if (isBust) {
-                    System.out.println("Player "+ numPlayer+ "busts!");
-                    break;
-                }
-            } else if (input.equals("stand")){
-                System.out.println("Player "+ numPlayer+ " stands with "+ sumCards);
-                break;
-            }
-            else {
-                System.out.println("Try again. Please type 'hit' or 'stand'.");
-            }
-        }
-    }
 
-    }
+
+
+
+
+}
