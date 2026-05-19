@@ -32,15 +32,11 @@ public class Main {
         player1.addCard(deck[numCards]);
         numCards++;
         player1.getHandTotal();
+        player1.bustCard();
         player1.printPlayer();
         //dealer
 
-        while (true) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Player 1 what do you want to do: ");
-            String input = sc.nextLine();
-
-        }
+       player1.takeTurn();
     }
 
   public void printDeck(){

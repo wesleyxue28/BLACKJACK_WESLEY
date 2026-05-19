@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Player {
 
     public boolean isDealer = false;
@@ -23,7 +25,6 @@ public class Player {
         printPlayer();
 //        addCard(new Card(6,"Spade",true));
         getHandTotal();
-        bustCard();
     }
 
     public void printPlayer(){
@@ -38,7 +39,7 @@ public class Player {
     }
 
     public void getHandTotal(){
-        int sumCards = 0;
+        sumCards = 0;
         for (int i = 0; i < numCards; i++){
             if (hand[i].value == 0) {
                 sumCards += 11;
@@ -55,16 +56,42 @@ public class Player {
     public void bustCard(){
         if (sumCards < 21){
             isBust = false;
-            System.out.println(sumCards);
+            System.out.println(sumCards + "what do you want to do?");
         }
         else if (sumCards > 21){
             isBust = true;
-            System.out.println(sumCards);
+            System.out.println(sumCards + "you lose");
         }
         else{
             isBust = false;
-            System.out.println("Black ");
+            System.out.println("Black jack ");
             System.out.println(sumCards);
+        }
+    }
+
+    public void takeTurn() {
+        Scanner sc = new Scanner(System.in);
+        while (true){
+            System.out.println("Player "+ numPlayer + ", type 'hit' or 'stand': ");
+            String input = sc.nextLine();
+
+            if (input.equals("hit")){
+                addCard();
+                numCards++;
+                getHandTotal();
+                printPlayer();
+                bustCard();
+                if (isBust) {
+                    System.out.println("Player "+ numPlayer+ "busts!");
+                    break;
+                }
+            } else if (input.equals("stand")){
+                System.out.println("Player "+ numPlayer+ " stands with "+ sumCards);
+                break;
+            }
+            else {
+                System.out.println("Try again. Please type 'hit' or 'stand'.");
+            }
         }
     }
 
